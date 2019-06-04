@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: picture-challenge
+
+  datasource:
+    url: jdbc:mysql://localhost:3307/picture_challenge?sslMode=DISABLED
+    username: root
+    password: my-secret-pw
+    driver-class-name: com.mysql.jdbc.Driver
+  data:
+    jpa:
+      repositories:
+        enabled: true
+        bootstrap-mode: default
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+    hibernate:
+      ddl-auto: create
+  h2:
+    console:
+      enabled: true
+  servlet:
+    multipart:
+      max-file-size: 20MB
+
+logging:
+  level:
+    org.hibernate: debug
+
+server:
+  port: 8082
+
+api:
+  auth-token-header-name: Api-Key
+  auth-token: 5634563846456
+
