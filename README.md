@@ -16,4 +16,4 @@
 4. Configure your mySQL server to point to port 3307 or change it to 3306 in the application.yml to use existing default configuration.
 
 *Notes:
-Work is still been done in implement security features and external calls to make-up picture meta-data.
+Work is still been done to implement security features and external calls to make-up picture meta-data.
