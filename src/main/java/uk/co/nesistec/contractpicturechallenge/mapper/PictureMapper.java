@@ -1,8 +1,10 @@
 package uk.co.nesistec.contractpicturechallenge.mapper;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-import org.springframework.data.domain.Page;
 import uk.co.nesistec.contractpicturechallenge.domain.api.Picture;
 import uk.co.nesistec.contractpicturechallenge.domain.business.PictureDTO;
 
@@ -31,7 +33,11 @@ public final class PictureMapper{
         						   .build();
     }
 
-    public static Page<Picture> toApiPageable(Page<PictureDTO> businessDTO){
-        return businessDTO.map(PictureMapper::toApi);
+    public static List<Picture> toApis(List<PictureDTO> businessDTO){
+    	List<Picture> pictures = new ArrayList<>();
+    	
+    	businessDTO.forEach(p -> pictures.add(toApi(p)));
+    	
+        return pictures;
     }
 }

@@ -1,9 +1,13 @@
 package uk.co.nesistec.contractpicturechallenge.api;
 
+import static java.util.Optional.ofNullable;
+import static org.springframework.http.HttpStatus.CREATED;
+
+import java.io.IOException;
+import java.util.List;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -15,13 +19,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+
 import uk.co.nesistec.contractpicturechallenge.domain.api.Picture;
 import uk.co.nesistec.contractpicturechallenge.service.PictureService;
-
-import java.io.IOException;
-
-import static java.util.Optional.ofNullable;
-import static org.springframework.http.HttpStatus.CREATED;
 
 @RestController
 @RequestMapping("/api")
@@ -66,10 +66,10 @@ public class PictureController {
         return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(file);
     }
 
-    @GetMapping(value = BASE_PATH, params = {"page", "size"})
-    public ResponseEntity<Page<Picture>> retrievePictureDetails(Pageable pageable) {
-        final Page<Picture> pictures = picService.retrieveAllPictureDetails(pageable);
-        return ResponseEntity.ok().contentLength(pictures.getTotalElements()).contentType(MediaType.APPLICATION_JSON).body(pictures);
+    @GetMapping(value = BASE_PATH)
+    public ResponseEntity<List<Picture>> retrievePictureDetails() {
+        final List<Picture> pictures = picService.retrieveAllPictureDetails();
+        return ResponseEntity.ok().contentLength(pictures.size()).contentType(MediaType.APPLICATION_JSON).body(pictures);
     }
 
     @DeleteMapping(value = BASE_PATH + "/" + FILENAME)

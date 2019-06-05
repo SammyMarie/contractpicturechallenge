@@ -1,25 +1,25 @@
 package uk.co.nesistec.contractpicturechallenge.service;
 
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
-import uk.co.nesistec.contractpicturechallenge.domain.api.Picture;
-import uk.co.nesistec.contractpicturechallenge.domain.business.PictureDTO;
-import uk.co.nesistec.contractpicturechallenge.mapper.PictureMapper;
-import uk.co.nesistec.contractpicturechallenge.repository.PictureRepository;
+import static java.util.Objects.requireNonNull;
+import static java.util.Optional.ofNullable;
+import static uk.co.nesistec.contractpicturechallenge.mapper.PictureMapper.toApi;
+import static uk.co.nesistec.contractpicturechallenge.mapper.PictureMapper.toApis;
+import static uk.co.nesistec.contractpicturechallenge.mapper.PictureMapper.toBusiness;
 
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.List;
 
-import static java.util.Objects.requireNonNull;
-import static java.util.Optional.ofNullable;
-import static uk.co.nesistec.contractpicturechallenge.mapper.PictureMapper.toApi;
-import static uk.co.nesistec.contractpicturechallenge.mapper.PictureMapper.toApiPageable;
-import static uk.co.nesistec.contractpicturechallenge.mapper.PictureMapper.toBusiness;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import uk.co.nesistec.contractpicturechallenge.domain.api.Picture;
+import uk.co.nesistec.contractpicturechallenge.domain.business.PictureDTO;
+import uk.co.nesistec.contractpicturechallenge.mapper.PictureMapper;
+import uk.co.nesistec.contractpicturechallenge.repository.PictureRepository;
 
 @Service
 public class PictureServiceImpl implements PictureService {
@@ -39,8 +39,8 @@ public class PictureServiceImpl implements PictureService {
     }
 
     @Override
-    public Page<Picture> retrieveAllPictureDetails(Pageable pageable) {
-        return toApiPageable(repository.findAll(pageable));
+    public List<Picture> retrieveAllPictureDetails() {
+        return toApis(repository.findAll());
     }
 
     @Override
