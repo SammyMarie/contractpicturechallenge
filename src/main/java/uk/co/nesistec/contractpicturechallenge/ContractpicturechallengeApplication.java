@@ -9,5 +9,4 @@ public class ContractpicturechallengeApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ContractpicturechallengeApplication.class, args);
 	}
-
 }
