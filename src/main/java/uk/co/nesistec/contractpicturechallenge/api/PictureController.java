@@ -69,7 +69,7 @@ public class PictureController {
     @GetMapping(value = BASE_PATH)
     public ResponseEntity<List<Picture>> retrievePictureDetails() {
         final List<Picture> pictures = picService.retrieveAllPictureDetails();
-        return ResponseEntity.ok().contentLength(pictures.size()).contentType(MediaType.APPLICATION_JSON).body(pictures);
+        return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(pictures);
     }
 
     @DeleteMapping(value = BASE_PATH + "/" + FILENAME)
