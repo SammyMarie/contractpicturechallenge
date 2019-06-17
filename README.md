@@ -16,6 +16,3 @@
 3. Use http://localhost:8082/swagger-ui.html to view the available endpoints.
 4. Configure your mySQL server to point to port 3307 or change it to 3306 in the application.yml to use existing default configuration.
 5. Please use Postman to test the endpoints.
-
-*Notes:
-Work is still been done to implement external calls to make-up picture meta-data.
